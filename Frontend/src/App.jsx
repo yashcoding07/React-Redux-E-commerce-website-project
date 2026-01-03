@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="bg-gray-800 text-white h-screen w-screen">
+    <div className="bg-gray-800 overflow-auto text-white h-screen w-screen">
       <Navbar />
       <Mainroutes />
     </div>

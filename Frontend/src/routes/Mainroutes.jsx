@@ -6,12 +6,15 @@ import Register from "../pages/Register";
 import CreateProduct from "../pages/admin/CreateProduct";
 import ProductDetails from "../pages/ProductDetails";
 import UserProfile from "../pages/users/UserProfile";
+import { useSelector } from "react-redux";
 
 const Mainroutes = () => {
+
+  const { users } = useSelector((state) => state.userReducer);
+
   return (
     <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={users ? <Products /> : <Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin/create-product" element={<CreateProduct />} />

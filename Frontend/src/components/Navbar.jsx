@@ -7,11 +7,10 @@ const Navbar = () => {
 
   return (
     <nav className="flex text-lg justify-center gap-x-[5%] p-3 text-gray-300 ">
-      <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"/products"}>Products</NavLink>
+      <NavLink to={"/products"}>Home</NavLink>
       {user ? (
         <>
-            <NavLink to={"/admin/create-product"}>Create Product</NavLink>
+        {user && user?.isAdmin && <NavLink to={"/admin/create-product"}>Create Product</NavLink>}
             <NavLink to={"/admin/user-profile"}>Settings</NavLink>
         </>
       ) : (

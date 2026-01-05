@@ -14,7 +14,7 @@ export const asyncCurrentUser = () => async (dispatch) => {
 export const asyncLoginUser = (user) => async () => {
   try {
     const { data } = await axios.get(
-      `/users?email:${user.email}&password:${user.password}`
+      `/users?email=${user.email}&password=${user.password}`
     );
     localStorage.setItem("users", JSON.stringify(data[0]));
   } catch (error) {
@@ -40,3 +40,22 @@ export const asyncRegisterUser = (user) => async () => {
     console.log(error);
   }
 };
+
+export const asyncUpdateUser = (id, user) => async (dispatch) => {
+  try {
+    const {data} = await axios.patch("/users/" + id, user);
+    localStorage.setItem("users", JSON.stringify(data));
+    dispatch(asyncCurrentUser());
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const asyncDeleteUser = (id) => async (dispatch, getstate) => {
+  try {
+      await axios.delete("/users", id);
+      dispatch(asyncLogoutUser());
+    } catch (error) {
+      console.log(error);
+    }
+}

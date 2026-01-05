@@ -11,8 +11,8 @@ const Login = () => {
 
   const loginHandler = (user) => {
     dispatch(asyncLoginUser(user));
-    navigate("/");
     reset();
+    navigate("/");
   }
   
   return (
